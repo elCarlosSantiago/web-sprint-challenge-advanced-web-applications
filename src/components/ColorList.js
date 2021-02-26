@@ -8,7 +8,7 @@ const initialColor = {
   code: { hex: '' },
 };
 
-const ColorList = ({ colors, updateColors }) => {
+const ColorList = ({ colors, updateColors, getColors }) => {
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
 
@@ -16,35 +16,39 @@ const ColorList = ({ colors, updateColors }) => {
     setEditing(true);
     setColorToEdit(color);
   };
-
+  
   const saveEdit = (e) => {
     e.preventDefault();
-    let id = colorToEdit.id;
+    let id = colorToEdit.id
     axiosWithAuth()
-      .put(`/api/colors/${id}`, colorToEdit)
-      .then((res) => {
-        console.log(res.data);
-        updateColors([...colors, res.data]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    .put(`/api/colors/${id}`, colorToEdit)
+    .then(res => {
+      updateColors([
+        ...colors,
+        res.data
+      ])
+      getColors()
+    })
+    .catch(err => {
+      console.log(err)
+    })
   };
 
   const deleteColor = (color) => {
-    let id = color.id;
+    let id = color.id
     axiosWithAuth()
-      .delete(`/api/colors/${id}`)
-      .then((res) => {
-        updateColors(
-          colors.filter((item) => {
-            return item.id != res.data;
-          })
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    .delete(`/api/colors/${id}`)
+    .then(res => {
+      updateColors(
+        colors.filter(item => {
+          return item.id != res.data
+        })
+      )
+      
+    })
+    .catch(err => {
+      console.log(err)
+    })
   };
 
   return (
