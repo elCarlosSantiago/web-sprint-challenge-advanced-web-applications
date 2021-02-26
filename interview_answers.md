@@ -12,4 +12,4 @@ Multifactor authentication seems to be one of the most popular ways of maintaini
 Web servers are typically computer programs which serve specific web files to a client after it has made a request.
 
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers
-The 4(5) methods used are GET, POST, PUT (or PATCH), & DELETE. PUT & PATCH are similar with some nuanced differences, PUT is more widely used.
+The 4(5) methods used are GET (R), POST(C), PUT(U) (or PATCH), & DELETE (D) so (RCUD in this case 😂). PUT & PATCH are similar with some nuanced differences, PUT is more widely used.
